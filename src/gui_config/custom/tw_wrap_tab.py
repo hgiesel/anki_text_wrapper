@@ -10,21 +10,21 @@ from aqt import mw
 from aqt.qt import QWidget, QLabel, Qt
 
 from ...lib.config import deserialize_script, serialize_script, deserialize_setting, serialize_setting
-from ...lib.types import SMConcrScript, SMMetaScript
+from ...lib.types import TWConcrScript, TWMetaScript
 from ...lib.registrar import get_interface
 
-from ..sm_script_tab_ui import Ui_SMScriptTab
+from ..sm_script_tab_ui import Ui_TWWrapTab
 
-from .sm_setting_add_replace import SMSettingAddReplace
-from .sm_script_config import SMScriptConfig
+from .sm_setting_add_replace import TWSettingAddReplace
+from .sm_script_config import TWScriptConfig
 
 from .util import mapTruthValueToIcon
 
-class SMScriptTab(QWidget):
+class TWScriptTab(QWidget):
     def __init__(self, main):
         super().__init__()
 
-        self.ui = Ui_SMScriptTab()
+        self.ui = Ui_TWWrapTab()
         self.ui.setupUi(self)
 
         self.ui.addPushButton.clicked.connect(self.addScript)
@@ -58,7 +58,7 @@ class SMScriptTab(QWidget):
         for idx, scr in enumerate(self.scr):
             headerLabels.append(f'Script {idx}')
 
-            if isinstance(scr, SMConcrScript):
+            if isinstance(scr, TWConcrScript):
                 self.setRowMod(
                     idx,
                     scr.name,
@@ -96,7 +96,7 @@ class SMScriptTab(QWidget):
             self.scr[row] = newScript
             self.drawScripts()
 
-        a = SMScriptConfig(mw, self.modelName, saveScript)
+        a = TWScriptConfig(mw, self.modelName, saveScript)
         a.setupUi(self.scr[row])
         a.exec_()
 
@@ -123,7 +123,7 @@ class SMScriptTab(QWidget):
         self.drawScripts()
 
     def deleteScript(self):
-        current_scr: Union[SMConcrScript, SMMetaScript] = self.scr[self.ui.scriptsTable.currentRow()]
+        current_scr: Union[TWConcrScript, TWMetaScript] = self.scr[self.ui.scriptsTable.currentRow()]
 
         def show_nondeletable():
             from aqt.utils import showInfo # not to be deleted!
@@ -132,7 +132,7 @@ class SMScriptTab(QWidget):
                 'You might have to uninstall the add-on which inserted this script.'
             )
 
-        if isinstance(current_scr, SMConcrScript):
+        if isinstance(current_scr, TWConcrScript):
             del self.scr[self.ui.scriptsTable.currentRow()] # gotta delete within dict
         else:
             iface = get_interface(current_scr.tag)
@@ -197,7 +197,7 @@ class SMScriptTab(QWidget):
 
             validator = Draft7Validator(schema, resolver=resolver, format_checker=None)
 
-            dial = SMSettingAddReplace(mw)
+            dial = TWSettingAddReplace(mw)
             dial.setupUi(
                 json.dumps([serialize_script(scr) for scr in self.scr], sort_keys=True, indent=4),
                 validator,

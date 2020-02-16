@@ -13,17 +13,17 @@ from aqt.qt import QDialog, QWidget, QFont, Qt
 from aqt.utils import showInfo # actually needed!
 
 from .js_highlighter import JSHighlighter
-from .sm_setting_update import SMSettingUpdate
+from .tw_setting_update import TWSettingUpdate
 
-from ..sm_script_config_ui import Ui_SMScriptConfig
+from ..tw_script_config_ui import Ui_TWScriptConfig
 
 from ...lib.config import deserialize_script, serialize_script
 
-from ...lib.types import SMConcrScript, SMMetaScript, SMScriptStorage, SMScriptBool
+from ...lib.types import TWConcrScript, TWMetaScript, TWScriptStorage, TWScriptBool
 from ...lib.interface import make_script_bool
 from ...lib.registrar import get_interface
 
-def fix_storage(store: SMScriptStorage, script: SMConcrScript, to_store: SMScriptBool) -> SMScriptStorage:
+def fix_storage(store: TWScriptStorage, script: TWConcrScript, to_store: TWScriptBool) -> TWScriptStorage:
     def filter_store(tost):
         return [
             storekey[0]
@@ -40,14 +40,14 @@ def fix_storage(store: SMScriptStorage, script: SMConcrScript, to_store: SMScrip
 
     return replace(store, **the_dict)
 
-class SMScriptConfig(QDialog):
+class TWScriptConfig(QDialog):
     def __init__(self, parent, model_name, callback):
         super().__init__(parent=parent)
 
         self.callback = callback
         self.modelName = model_name
 
-        self.ui = Ui_SMScriptConfig()
+        self.ui = Ui_TWScriptConfig()
         self.ui.setupUi(self)
 
         self.accepted.connect(self.onAccept)
@@ -80,7 +80,7 @@ class SMScriptConfig(QDialog):
         self.highlighter = JSHighlighter(editor.document())
 
     def setupUi(self, script):
-        if isinstance(script, SMConcrScript):
+        if isinstance(script, TWConcrScript):
             self.setupUiConcr(script)
         else:
             self.setupUiMeta(script)
@@ -183,7 +183,7 @@ class SMScriptConfig(QDialog):
         else:
             showInfo('Valid Conditions.')
 
-    def exportData(self) -> Union[SMConcrScript, SMMetaScript]:
+    def exportData(self) -> Union[TWConcrScript, TWMetaScript]:
         result = deserialize_script(self.modelName, {
             'name': self.ui.nameLineEdit.text(),
             'version': self.ui.versionLineEdit.text(),
@@ -197,7 +197,7 @@ class SMScriptConfig(QDialog):
         try:
             user_result = self.iface.setter(self.meta.id, result)
 
-            if isinstance(user_result, SMConcrScript):
+            if isinstance(user_result, TWConcrScript):
                 return replace(
                     self.meta,
                     storage = fix_storage(self.meta.storage, user_result, self.iface.store),
@@ -231,7 +231,7 @@ class SMScriptConfig(QDialog):
 
             validator = Draft7Validator(schema, resolver=resolver, format_checker=None)
 
-            dial = SMSettingUpdate(mw)
+            dial = TWSettingUpdate(mw)
             dial.setupUi(
                 json.dumps(serialize_script(self.exportData()), sort_keys=True, indent=4),
                 validator,

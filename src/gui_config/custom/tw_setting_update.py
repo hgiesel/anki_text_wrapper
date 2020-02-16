@@ -4,13 +4,13 @@ import jsonschema
 from aqt.qt import QDialog
 from aqt.utils import showWarning, showInfo
 
-from ..sm_setting_update_ui import Ui_SMSettingUpdate
+from ..tw_setting_update_ui import Ui_TWSettingUpdate
 
-class SMSettingUpdate(QDialog):
+class TWSettingUpdate(QDialog):
     def __init__(self, parent):
         super().__init__(parent=parent)
 
-        self.ui = Ui_SMSettingUpdate()
+        self.ui = Ui_TWSettingUpdate()
         self.ui.setupUi(self)
 
         self.ui.cancelButton.clicked.connect(self.reject)

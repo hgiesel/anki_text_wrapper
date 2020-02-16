@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SMScriptConfig</class>
- <widget class="QWidget" name="SMScriptConfig">
+ <class>TWWrapConfig</class>
+ <widget class="QWidget" name="TWWrapConfig">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>619</width>
-    <height>441</height>
+    <width>945</width>
+    <height>455</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Every iteration has a default style with the name &amp;quot;default&amp;quot;. If no other style is applied, and no rule is applicable, the &amp;quot;default&amp;quot; style will be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="title">
-      <string>Script Code</string>
+      <string>Wrap Code</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0" colspan="2">
@@ -53,12 +53,12 @@
        </widget>
       </item>
       <item row="1" column="3" colspan="2">
-       <widget class="QCheckBox" name="enableScriptCheckBox">
+       <widget class="QCheckBox" name="enableWrapCheckBox">
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Advanced feature. Check this if you want to treat the content of the &amp;quot;Open Delimiter&amp;quot;, &amp;quot;Close Delimiter&amp;quot;, and &amp;quot;Field separator&amp;quot; as regular expressions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
-         <string>Enable this script</string>
+         <string>Enable this Wrap</string>
         </property>
        </widget>
       </item>
@@ -124,12 +124,12 @@
     </widget>
    </item>
    <item row="1" column="0" colspan="3">
-    <widget class="QGroupBox" name="scriptConditions">
+    <widget class="QGroupBox" name="wrapConditions">
      <property name="toolTip">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The input syntax of the iteration. This will be used to detect sets in the card content.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="title">
-      <string>Script Conditions</string>
+      <string>Wrap Conditions</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="1" colspan="2">
