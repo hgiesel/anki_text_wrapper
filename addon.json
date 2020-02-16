@@ -1,0 +1,15 @@
+{
+    "display_name": "Text Wrapper",
+    "module_name": "text_wrapper",
+    "repo_name": "anki_text_wrapper",
+    "ankiweb_id": "0000",
+    "author": "hgiesel",
+    "contact": "https://github.com/hgiesel",
+    "homepage": "https://github.com/hgiesel/anki_text_wrapper",
+    "copyright_start": 2020,
+    "tags": "text wrapping tags surrounding",
+    "conflicts": [],
+    "targets": [
+      "anki21"
+    ]
+}
