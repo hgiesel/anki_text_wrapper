@@ -1,7 +1,7 @@
 {
   "settings": [
     {
-      "name": "My button config",
+      "name": "My html tag wrap",
       "contextMenu": {
         "enabled": false,
         "text": "MyText"
@@ -15,39 +15,82 @@
         "enabled": false,
         "text": "MyText"
       },
-      "functionality": {
-
-        "option1": {
-          "type": "html-tag",
-          "tagname": "span",
-          "attributes": {
-            "src": "img_girl"
-          }
-        },
-
-        "option2": {
-          "type": "html-class",
-          "classname": "span",
-          "global": false,
-          "styling": {
-            "color": "blue"
-          }
-        },
-
-        "option3": {
-          "type": "text-wrap",
-          "prefix": ">",
-          "suffix": "<"
-        },
-
-        "option4": {
-          "type": "meta",
-          "tag": "This is a fake tag",
-          "id": "This is a fake id",
-          "storage": {}
+      "wrap": {
+        "tagname": "span",
+        "attributes": {
+          "src": "img_girl"
         }
+      }
+    },
 
+    {
+      "name": "My html class wrap",
+      "contextMenu": {
+        "enabled": false,
+        "text": "MyText"
+      },
+      "extraButton": {
+        "enabled": false,
+        "text": "MyText",
+        "tooltip": "MoreText"
+      },
+      "collectiveButton": {
+        "enabled": false,
+        "text": "MyText"
+      },
+      "wrap": {
+        "classname": "span",
+        "global": false,
+        "styling": {
+          "color": "blue"
+        }
+      }
+    },
+
+    {
+      "name": "My text wrap",
+      "contextMenu": {
+        "enabled": false,
+        "text": "MyText"
+      },
+      "extraButton": {
+        "enabled": false,
+        "text": "MyText",
+        "tooltip": "MoreText"
+      },
+      "collectiveButton": {
+        "enabled": false,
+        "text": "MyText"
+      },
+      "wrap": {
+        "prefix": ">",
+        "infix": "::",
+        "infixRegex": "c\\d*",
+        "suffix": "<"
+      }
+    },
+
+    {
+      "name": "My button config4",
+      "contextMenu": {
+        "enabled": false,
+        "text": "MyText"
+      },
+      "extraButton": {
+        "enabled": false,
+        "text": "MyText",
+        "tooltip": "MoreText"
+      },
+      "collectiveButton": {
+        "enabled": false,
+        "text": "MyText"
+      },
+      "wrap": {
+        "tag": "This is a fake tag",
+        "id": "This is a fake id",
+        "storage": {}
       }
     }
+
   ]
 }

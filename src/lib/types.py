@@ -12,9 +12,9 @@ class TWSettingStorage:
     name: Optional[str]
     description: Optional[str]
     enabled: Optional[bool]
-    collectiveButton: Optional[TWCollectiveButtonStorage]
-    extraButton: Optional[TWExtraButtonStorage]
-    contextMenu: Optional[TWContextMenuStorage]
+    collective_button: Optional[TWCollectiveButtonStorage]
+    extra_button: Optional[TWExtraButtonStorage]
+    context_menu: Optional[TWContextMenuStorage]
     wrap: Optional[TWWrapStorage]
 
 @dataclass(frozen=True)

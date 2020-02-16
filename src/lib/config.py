@@ -8,9 +8,24 @@ from aqt import mw
 
 from .utils import safenav, safenav_preset
 
-from .types import SMSetting, SMScript, SMConcrScript, SMMetaScript, SMScriptStorage
-from .interface import make_setting, make_script, make_meta_script, make_script_storage
-from .registrar import has_interface, get_meta_scripts, meta_script_is_registered
+from .types import (
+    TWSetting,
+    TWWrap,
+    TWHTMLTagWrap,
+    TWHTMLClassWrap,
+    TWTextWrap,
+    TWMetaWrap,
+)
+
+from .interface import (
+    make_setting,
+    make_html_tag_wrap,
+    make_html_class_wrap,
+    make_text_wrap,
+    make_meta_wrap,
+)
+
+from .registrar import has_interface, get_meta_wraps, meta_wrap_is_registered
 
 # initialize default type
 SCRIPTNAME = path.dirname(path.realpath(__file__))
@@ -25,19 +40,19 @@ with open(path.join(SCRIPTNAME, '../../config.json'), encoding='utf-8') as confi
     safenav_concr_script = safenav_preset(model_default['scripts'][0])
     safenav_meta_script = safenav_preset(model_default['scripts'][1])
 
-def deserialize_setting(model_name, model_setting, access_func = safenav_setting) -> SMSetting:
-    return model_setting if isinstance(model_setting, SMSetting) else make_setting(
-        model_name,
+def deserialize_setting(model_setting, access_func = safenav_setting) -> TWSetting:
+    return model_setting if isinstance(model_setting, TWSetting) else make_setting(
+        access_func([model_setting], ['name']),
+        access_func([model_setting], ['description']),
         access_func([model_setting], ['enabled']),
-        access_func([model_setting], ['insertStub']),
-        access_func([model_setting], ['indentSize']),
-        add_other_metas(model_name, [s for s in [deserialize_script(model_name, script)
-         for script
-         in access_func([model_setting], ['scripts'])] if s]),
+        deserialize_collective_button(access_func([model_setting], ['collectiveButton'])),
+        deserialize_extra_button(access_func([model_setting], ['collectiveButton'])),
+        deserialize_context_menu(access_func([model_setting], ['contextMenu'])),
+        deserialize_wrap(access_func([model_setting], ['wrap'])),
     )
 
 def add_other_metas(model_name, scripts: List[SMScript]) -> List[SMScript]:
-    meta_scripts = get_meta_scripts(model_name)
+    meta_scripts = get_meta_wraps(model_name)
 
     for ms in meta_scripts:
         try:
@@ -50,41 +65,65 @@ def add_other_metas(model_name, scripts: List[SMScript]) -> List[SMScript]:
 
     return scripts
 
-def deserialize_script(model_name, script_data) -> Union[SMConcrScript, SMMetaScript]:
+def deserialize_wrap(
+    model_name,
+    script_data,
+) -> Union[TWHTMLTagWrap, TWHTMLClassWrap, TWTextWrap, TWMetaWrap]:
     return script_data if isinstance(script_data, SMScript) else (
         deserialize_concr_script(script_data)
         if 'name' in script_data
         else deserialize_meta_script(model_name, script_data)
     )
 
-def deserialize_concr_script(script_data, access_func = safenav_concr_script) -> SMConcrScript:
-    result = script_data if isinstance(script_data, SMConcrScript) else make_script(
-        access_func([script_data], ['enabled']),
-        access_func([script_data], ['name']),
-        access_func([script_data], ['version']),
-        access_func([script_data], ['description']),
-        access_func([script_data], ['conditions']),
-        access_func([script_data], ['code']),
+def deserialize_html_tag_wrap(
+    wrap_data,
+    access_func = safenav_concr_script,
+) -> TWHTMLTagWrap:
+    result = wrap_data if isinstance(wrap_data, TWHTMLTagWrap) else make_html_tag_wrap(
+        access_func([wrap_data], ['tagname']),
+        access_func([wrap_data], ['attributes']),
     )
 
     return result
 
-def deserialize_meta_script(model_name, script_data, access_func = safenav_meta_script) -> Optional[SMMetaScript]:
-    result = script_data if isinstance(script_data, SMMetaScript) else make_meta_script(
-        access_func([script_data], ['tag']),
-        access_func([script_data], ['id']),
-        make_script_storage(**access_func([script_data], ['storage'], default = {})),
+def deserialize_html_class_wrap(
+    wrap_data,
+    access_func = safenav_concr_script,
+) -> TWHTMLClassWrap:
+    result = wrap_data if isinstance(wrap_data, TWHTMLClassWrap) else make_html_class_wrap(
+        access_func([wrap_data], ['classname']),
+        access_func([wrap_data], ['stylings']),
+    )
+    return result
+
+def deserialize_text_wrap(
+    wrap_data,
+    access_func = safenav_concr_script,
+) -> TWTextWrap:
+    result = wrap_data if isinstance(wrap_data, TWTextWrap) else make_text_wrap(
+        access_func([wrap_data], ['prefix']),
+        access_func([wrap_data], ['suffix']),
+    )
+    return result
+
+def deserialize_meta_wrap(
+    wrap_data,
+    access_func = safenav_concr_script,
+) -> TWMetaWrap:
+    result = wrap_data if isinstance(wrap_data, TWMetaWrap) else make_meta_wrap(
+        access_func([wrap_data], ['tag']),
+        access_func([wrap_data], ['id']),
+        make_wrap_storage(**access_func([wrap_data], ['storage'], default = {})),
     )
 
-    return result if has_interface(result.tag) and meta_script_is_registered(
-        model_name,
+    return result if has_interface(result.tag) and meta_wrap_is_registered(
         result.tag,
         result.id,
     ) else None
 
-def serialize_setting(setting: SMSetting) -> dict:
+def serialize_setting(setting: TWSetting) -> dict:
     return {
-        'modelName': setting.model_name,
+        'name': 'f',
         'enabled': setting.enabled,
         'insertStub': setting.insert_stub,
         'indentSize': setting.indent_size,
