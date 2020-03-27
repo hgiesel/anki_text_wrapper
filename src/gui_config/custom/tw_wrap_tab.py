@@ -9,14 +9,15 @@ from jsonschema import RefResolver, Draft7Validator
 from aqt import mw
 from aqt.qt import QWidget, QLabel, Qt
 
-from ...lib.config import deserialize_script, serialize_script, deserialize_setting, serialize_setting
+from ...lib.config import serialize_setting, deserialize_setting
+
 from ...lib.config_types import TWConcrScript, TWMetaScript
 from ...lib.registrar import get_interface
 
-from ..sm_script_tab_ui import Ui_TWWrapTab
+from ..tw_script_tab_ui import Ui_TWWrapTab
 
-from .sm_setting_add_replace import TWSettingAddReplace
-from .sm_script_config import TWScriptConfig
+from .tw_setting_add_replace import TWSettingAddReplace
+from .tw_script_config import TWScriptConfig
 
 from .util import mapTruthValueToIcon
 

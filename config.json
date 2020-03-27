@@ -4,6 +4,7 @@
 
       {
         "name": "My tag wrap",
+        "": "My tag wrap",
         "contextMenu": {
           "enabled": false,
           "text": "Context menu text"
