@@ -3,49 +3,25 @@
     "1": [
 
       {
-        "name": "My html tag wrap",
+        "name": "My tag wrap",
         "contextMenu": {
           "enabled": false,
-          "text": "MyText"
+          "text": "Context menu text"
         },
         "extraButton": {
           "enabled": false,
-          "text": "MyText",
-          "tooltip": "MoreText"
+          "text": "Extra button text",
+          "tooltip": "Extra button tooltip"
         },
         "collectiveButton": {
           "enabled": false,
-          "text": "MyText"
+          "text": "Collective button text"
         },
         "wrap": {
+          "classname": "mytag",
           "tagname": "span",
-          "attributes": {
-            "src": "img_girl"
-          }
-        }
-      },
-
-      {
-        "name": "My html class wrap",
-        "contextMenu": {
-          "enabled": false,
-          "text": "MyText"
-        },
-        "extraButton": {
-          "enabled": false,
-          "text": "MyText",
-          "tooltip": "MoreText"
-        },
-        "collectiveButton": {
-          "enabled": false,
-          "text": "MyText"
-        },
-        "wrap": {
-          "classname": "span",
-          "global": false,
-          "styling": {
-            "color": "blue"
-          }
+          "attributes": {},
+          "stylings": {}
         }
       },
 
@@ -53,22 +29,22 @@
         "name": "My text wrap",
         "contextMenu": {
           "enabled": false,
-          "text": "MyText"
+          "text": "Context menu text"
         },
         "extraButton": {
           "enabled": false,
-          "text": "MyText",
-          "tooltip": "MoreText"
+          "text": "Extra button text",
+          "tooltip": "Extra button tooltip"
         },
         "collectiveButton": {
           "enabled": false,
-          "text": "MyText"
+          "text": "Collective button text"
         },
         "wrap": {
-          "prefix": ">",
+          "prefix": "{{",
           "infix": "::",
           "infixRegex": "c\\d*",
-          "suffix": "<"
+          "suffix": "}}"
         }
       },
 
@@ -76,16 +52,16 @@
         "name": "My meta wrap",
         "contextMenu": {
           "enabled": false,
-          "text": "MyText"
+          "text": "Context menu text"
         },
         "extraButton": {
           "enabled": false,
-          "text": "MyText",
-          "tooltip": "MoreText"
+          "text": "Extra button text",
+          "tooltip": "Extra button tooltip"
         },
         "collectiveButton": {
           "enabled": false,
-          "text": "MyText"
+          "text": "Collective button text"
         },
         "wrap": {
           "tag": "This is a fake tag",

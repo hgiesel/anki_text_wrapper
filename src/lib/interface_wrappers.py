@@ -1,14 +1,14 @@
 from typing import Optional, Dict
 
-from ..config_types import (
+from .config_types import (
     TWWrap,
     TWTagWrap, TWTextWrap, TWMetaWrap,
 
     TWWrapBool,
-    TWTagWrapBool, TWTextWrapBool, TWMetaWrapBool,
+    TWTagWrapBool, TWTextWrapBool,
 
     TWWrapStorage,
-    TWTagWrapStorage, TWTextWrapStorage, TWMetaWrapStorage,
+    TWTagWrapStorage, TWTextWrapStorage,
 )
 
 ''' Wrappers Bool '''
@@ -29,10 +29,14 @@ def make_tag_wrap_bool(
 def make_text_wrap_bool(
     prefix: Optional[bool] = None,
     suffix: Optional[bool] = None,
+    infix: Optional[bool] = None,
+    infixRegex: Optional[bool] = None,
 ) -> TWTextWrapBool:
     return TWTextWrapBool(
         prefix,
         suffix,
+        infix,
+        infixRegex,
     )
 
 ''' Wrappers Storage '''

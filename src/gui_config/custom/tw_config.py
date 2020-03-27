@@ -10,7 +10,6 @@ from aqt.qt import QDialog, QWidget, QAction
 from aqt.utils import getText, showWarning, showInfo
 
 from ...lib.config import deserialize_setting, serialize_setting, write_settings
-from ...lib.model_editor import setup_models
 
 from .._config_ui import Ui_TWConfig
 

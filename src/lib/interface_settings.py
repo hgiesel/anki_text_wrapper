@@ -1,6 +1,6 @@
 from typing import Dict, Optional
 
-from ..config_types import (
+from .config_types import (
     TWWrap,
     TWSetting, TWCollectiveButton, TWExtraButton, TWContextMenu,
 

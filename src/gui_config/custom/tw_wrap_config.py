@@ -20,7 +20,6 @@ from ..tw_script_config_ui import Ui_TWScriptConfig
 from ...lib.config import deserialize_script, serialize_script
 
 from ...lib.config_types import TWConcrScript, TWMetaScript, TWScriptStorage, TWScriptBool
-from ...lib.interface import make_script_bool
 from ...lib.registrar import get_interface
 
 def fix_storage(store: TWScriptStorage, script: TWConcrScript, to_store: TWScriptBool) -> TWScriptStorage:
@@ -143,7 +142,7 @@ class TWScriptConfig(QDialog):
         except AttributeError:
             self.enableChange(self.ui.enableScriptCheckBox.isChecked())
 
-    def enableChange(self, state=True, readonly=make_script_bool()):
+    def enableChange(self, state=True, readonly=None):
         def get_state(newstate, readonlystate):
             return newstate or readonlystate
 

@@ -8,8 +8,6 @@ from .config_types import (
     WrapType, Fields, AnkiModel, LabelText, WhichField, Tags, Falsifiable,
 )
 
-from .interface.wrappers import make_script_bools
-
 ScriptKeys = Literal[
     'enabled',
     'name',
@@ -19,9 +17,9 @@ ScriptKeys = Literal[
     'code',
 ]
 
-def __list_to_sm_script_bool(vals: List[ScriptKeys], prototype) -> TWSetting:
+def __list_to_tw_bool(prototype, vals: List[ScriptKeys]):
     return replace(
-        make_script_bool(),
+        prototype,
         **dict([(key, True) for key in vals])
     )
 

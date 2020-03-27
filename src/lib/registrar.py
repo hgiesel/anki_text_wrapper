@@ -1,7 +1,7 @@
 from typing import Optional, List, Tuple
 
 from .config_types import TWInterface, TWMetaWrap
-from .interface import make_meta_wrap
+from .interface_wrappers import make_meta_wrap
 
 _meta_interfaces: List[TWInterface] = []
 _meta_wraps: List[Tuple[str, TWMetaWrap]] = []
