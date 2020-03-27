@@ -11,7 +11,7 @@ from aqt.utils import getText, showWarning, showInfo
 
 from ...lib.config import deserialize_setting, serialize_setting, write_settings
 
-from .._config_ui import Ui_TWConfig
+from ..tw_config_ui import Ui_TWConfig
 
 from .tw_setting_update import TWSettingUpdate
 from .tw_wrap_tab import TWWrapTab

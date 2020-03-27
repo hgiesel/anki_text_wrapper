@@ -2,7 +2,7 @@
 declare DIR=$(realpath ${BASH_SOURCE%/*})
 declare customdir=''
 
-declare projname='TextWrapperDev'
+declare projname='anki_text_wrapper'
 
 if [[ "$customdir" ]]; then
   target="${customdir}/${projname}"

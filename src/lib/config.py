@@ -37,9 +37,9 @@ with open(path.join(SCRIPTNAME, '../../config.json'), encoding='utf-8') as confi
     default = SETTINGS_DEFAULT
 
     safenav_setting = safenav_preset(default[0])
-    safenav_extra_button = safenav_preset(default[0]['extra_button'])
-    safenav_collective_button = safenav_preset(default[0]['collective_button'])
-    safenav_context_menu = safenav_preset(default[0]['context_menu'])
+    safenav_extra_button = safenav_preset(default[0]['extraButton'])
+    safenav_collective_button = safenav_preset(default[0]['collectiveButton'])
+    safenav_context_menu = safenav_preset(default[0]['contextMenu'])
     safenav_tag_wrap = safenav_preset(default[0]['wrap'])
     safenav_text_wrap = safenav_preset(default[1]['wrap'])
     safenav_meta_wrap = safenav_preset(default[2]['wrap'])
@@ -52,9 +52,9 @@ def serialize_setting(setting: TWSetting) -> dict:
         'name': setting.name,
         'description': setting.description,
         'enabled': setting.enabled,
-        'collective_button': serialize_collective_button(setting.collectiveButton),
-        'extra_button': serialize_extra_button(setting.extraButton),
-        'context_menu': serialize_extra_button(setting.contextMenu),
+        'collective_button': serialize_collective_button(setting.collective_button),
+        'extra_button': serialize_extra_button(setting.extra_button),
+        'context_menu': serialize_extra_button(setting.context_menu),
         'wrap': serialize_wrap(setting.wrap),
     }
 
@@ -116,9 +116,9 @@ def deserialize_setting(setting_data, access_func = safenav_setting) -> TWSettin
         access_func([setting_data], ['name']),
         access_func([setting_data], ['description']),
         access_func([setting_data], ['enabled']),
-        deserialize_collective_button(access_func([setting_data], ['collective_button'])),
-        deserialize_extra_button(access_func([setting_data], ['extra_button'])),
-        deserialize_context_menu(access_func([setting_data], ['context_menu'])),
+        deserialize_collective_button(access_func([setting_data], ['collectiveButton'])),
+        deserialize_extra_button(access_func([setting_data], ['extraButton'])),
+        deserialize_context_menu(access_func([setting_data], ['contextMenu'])),
         deserialize_wrap(access_func([setting_data], ['wrap'])),
     )
 
