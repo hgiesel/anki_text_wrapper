@@ -2,10 +2,10 @@ from typing import Dict, Union, Optional, Callable, Literal, List, Tuple
 from dataclasses import dataclass, replace
 
 Falsifiable = lambda t: Union[Literal[False], t]
-WrapType = Literal['htmlTag', 'htmlClass', 'text']
+WrapType = Literal['tag', 'text']
 LabelText = str
 
-''' General Settings Storage '''
+''' GENERAL Settings Storage '''
 
 @dataclass(frozen=True)
 class TWSettingStorage:
@@ -18,19 +18,22 @@ class TWSettingStorage:
     wrap: Optional[TWWrapStorage]
 
 @dataclass(frozen=True)
-class TWCollectiveButtonStorage:
+class TWContextMenuStorage:
+    enabled: Optional[bool]
     text: Optional[str]
 
 @dataclass(frozen=True)
 class TWExtraButtonStorage:
+    enabled: Optional[bool]
     text: Optional[str]
     tooltip: Optional[str]
 
 @dataclass(frozen=True)
-class TWContextMenuStorage:
+class TWCollectiveButtonStorage:
+    enabled: Optional[bool]
     text: Optional[str]
 
-''' General Settings Bool '''
+''' GENERAL Settings Bool '''
 
 @dataclass(frozen=True)
 class TWSettingBool:
@@ -44,18 +47,21 @@ class TWSettingBool:
 
 @dataclass(frozen=True)
 class TWCollectiveButtonBool:
-    text: str
+    enabled: bool
+    text: bool
 
 @dataclass(frozen=True)
 class TWExtraButtonBool:
-    text: str
-    tooltip: str
+    enabled: bool
+    text: bool
+    tooltip: bool
 
 @dataclass(frozen=True)
 class TWContextMenuBool:
-    text: str
+    enabled: bool
+    text: bool
 
-''' General Settings '''
+''' GENERAL Settings '''
 
 @dataclass(frozen=True)
 class TWSetting:
@@ -69,29 +75,27 @@ class TWSetting:
 
 @dataclass(frozen=True)
 class TWCollectiveButton:
+    enabled: bool
     text: str
 
 @dataclass(frozen=True)
 class TWExtraButton:
+    enabled: bool
     text: str
     tooltip: str
 
 @dataclass(frozen=True)
 class TWContextMenu:
+    enabled: bool
     text: str
 
-''' Wraps Storage '''
+''' WRAPS Storage '''
 
 @dataclass(frozen=True)
-class TWHTMLTagWrapStorage:
-    tagname: Optional[str]
-    attributes: Optional[Dict[str, str]]
-
-@dataclass(frozen=True)
-class TWHTMLClassWrapStorage:
+class TWTagWrapStorage:
     tagname: Optional[str]
     classname: Optional[str]
-    writeToGlobal: Optional[bool]
+    attributes: Optional[Dict[str, str]]
     styling: Optional[Dict[str, str]]
 
 @dataclass(frozen=True)
@@ -100,23 +104,17 @@ class TWTextWrapStorage:
     suffix: Optional[str]
 
 TWWrapStorage = Union[
-    TWHTMLTagWrapStorage,
-    TWHTMLClassWrapStorage,
+    TWTagWrapStorage,
     TWTextWrapStorage,
 ]
 
-''' Wraps Bool '''
+''' WRAPS Bool '''
 
 @dataclass(frozen=True)
-class TWHTMLTagWrapBool:
-    tagname: bool
-    attributes: bool
-
-@dataclass(frozen=True)
-class TWHTMLClassWrapBool:
+class TWTagWrapBool:
     tagname: bool
     classname: bool
-    writeToGlobal: bool
+    attributes: bool
     styling: bool
 
 @dataclass(frozen=True)
@@ -125,31 +123,29 @@ class TWTextWrapBool:
     suffix: bool
 
 TWWrapBool = Union[
-    TWHTMLTagWrapBool,
-    TWHTMLClassWrapBool,
+    TWTagWrapBool,
     TWTextWrapBool
 ]
 
-'''Wraps'''
+'''WRAPS'''
 
 @dataclass(frozen=True)
 class TWWrap:
     pass
 
 @dataclass(frozen=True)
-class TWHTMLTagWrap(TWWrap):
+class TWTagWrap(TWWrap):
     tagname: str
-    attributes: Dict[str, str]
-
-@dataclass(frozen=True)
-class TWHTMLClassWrap(TWWrap):
     classname: str
+    attributes: Dict[str, str]
     styling: Dict[str, str]
 
 @dataclass(frozen=True)
 class TWTextWrap(TWWrap):
     prefix: str
     suffix: str
+    infix: str
+    infixRegex: str
 
 @dataclass(frozen=True)
 class TWMetaWrap(TWWrap):
@@ -157,7 +153,7 @@ class TWMetaWrap(TWWrap):
     id: str
     storage: TWWrapStorage
 
-""" Interface """
+""" INTERFACE """
 
 AnkiModel = str
 Fields = List[Tuple(str, str)]
