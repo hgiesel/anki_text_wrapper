@@ -157,9 +157,7 @@ def deserialize_setting_with_default(model_name, settings):
 
 def get_settings():
     config = mw.addonManager.getConfig(__name__)
-
-    def get_setting(model_name):
-        return filter(lambda v: v['modelName'] == model_name, safenav([config], ['settings'], default=None))
+    safenav([config], ['settings'], default=[])
 
     model_settings = []
 
