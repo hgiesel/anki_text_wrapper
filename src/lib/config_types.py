@@ -12,7 +12,7 @@ class TWTagWrapStorage:
     tagname: Optional[str]
     classname: Optional[str]
     attributes: Optional[Dict[str, str]]
-    styling: Optional[Dict[str, str]]
+    stylings: Optional[Dict[str, str]]
 
 @dataclass(frozen=True)
 class TWTextWrapStorage:
@@ -31,7 +31,7 @@ class TWTagWrapBool:
     tagname: bool
     classname: bool
     attributes: bool
-    styling: bool
+    stylings: bool
 
 @dataclass(frozen=True)
 class TWTextWrapBool:
@@ -52,7 +52,7 @@ class TWTagWrap:
     tagname: str
     classname: str
     attributes: Dict[str, str]
-    styling: Dict[str, str]
+    stylings: Dict[str, str]
 
 @dataclass(frozen=True)
 class TWTextWrap:

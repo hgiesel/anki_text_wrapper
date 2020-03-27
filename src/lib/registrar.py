@@ -1,6 +1,6 @@
 from typing import Optional, List, Tuple
 
-from .types import TWInterface, TWMetaWrap
+from .config_types import TWInterface, TWMetaWrap
 from .interface import make_meta_wrap
 
 _meta_interfaces: List[TWInterface] = []

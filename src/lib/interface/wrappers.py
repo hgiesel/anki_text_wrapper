@@ -1,34 +1,29 @@
 from typing import Optional, Dict
 
-from ..types import (
+from ..config_types import (
     TWWrap,
-    TWHTMLTagWrap, TWHTMLClassWrap, TWTextWrap, TWMetaWrap,
+    TWTagWrap, TWTextWrap, TWMetaWrap,
 
     TWWrapBool,
-    TWHTMLTagWrapBool, TWHTMLClassWrapBool, TWTextWrapBool, TWMetaWrapBool,
+    TWTagWrapBool, TWTextWrapBool, TWMetaWrapBool,
 
     TWWrapStorage,
-    TWHTMLTagWrapStorage, TWHTMLClassWrapStorage, TWTextWrapStorage, TWMetaWrapStorage,
+    TWTagWrapStorage, TWTextWrapStorage, TWMetaWrapStorage,
 )
 
 ''' Wrappers Bool '''
 
-def make_html_tag_wrap_bool(
+def make_tag_wrap_bool(
     tagname: Optional[bool] = None,
+    classname: Optional[bool] = None,
     attributes: Optional[bool] = None,
-) -> TWHTMLTagWrapBool:
-    return TWHTMLTagWrapBool(
+    stylings: Optional[bool] = None,
+) -> TWTagWrapBool:
+    return TWTagWrapBool(
+        classname if classname is not None else False,
         tagname if tagname is not None else False,
         attributes if attributes is not None else False,
-    )
-
-def make_html_class_wrap_bool(
-    classname: Optional[bool] = None,
-    styling: Optional[bool] = None,
-) -> TWHTMLClassWrapBool:
-    return TWHTMLClassWrapBool(
-        classname,
-        styling,
+        stylings if stylings is not None else False,
     )
 
 def make_text_wrap_bool(
@@ -42,60 +37,58 @@ def make_text_wrap_bool(
 
 ''' Wrappers Storage '''
 
-def make_html_tag_wrap_storage(
+def make_tag_wrap_storage(
     tagname: Optional[str] = None,
+    classname: Optional[str] = None,
     attributes: Optional[Dict[str, str]] = None,
-) -> TWHTMLTagWrapStorage:
-    return TWHTMLTagWrapStorage(
+    stylings: Optional[Dict[str, str]] = None,
+) -> TWTagWrapStorage:
+    return TWTagWrapStorage(
         tagname,
-        attributes
-    )
-
-def make_html_class_wrap_storage(
-    classname: Optional[str],
-    styling: Optional[Dict[str, str]],
-) -> TWHTMLClassWrapStorage:
-    return TWHTMLClassWrapStorage(
         classname,
-        styling,
+        attributes,
+        stylings,
     )
 
 def make_text_wrap_storage(
     prefix: Optional[str],
     suffix: Optional[str],
+    infix: Optional[str],
+    infixRegex: Optional[str],
 ) -> TWTextWrapStorage:
     return TWTextWrapStorage(
         prefix,
         suffix,
+        infix,
+        infixRegex,
     )
 
 ''' Wrappers '''
 
-def make_html_tag_wrap(
+def make_tag_wrap(
     tagname: str,
-    attributes: Dict[str, str],
-) -> TWHTMLTagWrap:
-    return TWHTMLTagWrap(
-        tagname,
-        attributes
-    )
-
-def make_html_class_wrap(
     classname: str,
-    styling: Dict[str, str]
-) -> TWHTMLClassWrap:
-    return TWHTMLClassWrap(
+    attributes: Dict[str, str],
+    stylings: Dict[str, str],
+) -> TWTagWrap:
+    return TWTagWrap(
+        tagname,
         classname,
-        styling,
+        attributes,
+        stylings,
     )
 
 def make_text_wrap(
     prefix: str,
     suffix: str,
+    infix: str,
+    infixRegex: str,
 ) -> TWTextWrap:
     return TWTextWrap(
         prefix,
         suffix,
+        infix,
+        infixRegex,
     )
 
 def make_meta_wrap(

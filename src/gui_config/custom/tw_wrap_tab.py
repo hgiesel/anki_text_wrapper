@@ -10,7 +10,7 @@ from aqt import mw
 from aqt.qt import QWidget, QLabel, Qt
 
 from ...lib.config import deserialize_script, serialize_script, deserialize_setting, serialize_setting
-from ...lib.types import TWConcrScript, TWMetaScript
+from ...lib.config_types import TWConcrScript, TWMetaScript
 from ...lib.registrar import get_interface
 
 from ..sm_script_tab_ui import Ui_TWWrapTab

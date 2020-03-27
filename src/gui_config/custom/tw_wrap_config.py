@@ -19,7 +19,7 @@ from ..tw_script_config_ui import Ui_TWScriptConfig
 
 from ...lib.config import deserialize_script, serialize_script
 
-from ...lib.types import TWConcrScript, TWMetaScript, TWScriptStorage, TWScriptBool
+from ...lib.config_types import TWConcrScript, TWMetaScript, TWScriptStorage, TWScriptBool
 from ...lib.interface import make_script_bool
 from ...lib.registrar import get_interface
 

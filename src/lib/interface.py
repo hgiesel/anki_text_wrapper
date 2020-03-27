@@ -1,16 +1,14 @@
 from typing import List, Literal, Union, Callable, Tuple
+from dataclasses import dataclass, replace
 
-from .types import (
+from .config_types import (
     TWInterface,
     TWSettingStorage, TWSettingBool, TWSetting,
 
     WrapType, Fields, AnkiModel, LabelText, WhichField, Tags, Falsifiable,
 )
 
-from dataclasses import dataclass, replace
-
-from .interface.wrappers import *
-from .interface.settings import *
+from .interface.wrappers import make_script_bools
 
 ScriptKeys = Literal[
     'enabled',
