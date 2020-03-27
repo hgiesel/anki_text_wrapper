@@ -1,96 +1,98 @@
 {
-  "settings": [
-    {
-      "name": "My html tag wrap",
-      "contextMenu": {
-        "enabled": false,
-        "text": "MyText"
+  "settings": {
+    "1": [
+
+      {
+        "name": "My html tag wrap",
+        "contextMenu": {
+          "enabled": false,
+          "text": "MyText"
+        },
+        "extraButton": {
+          "enabled": false,
+          "text": "MyText",
+          "tooltip": "MoreText"
+        },
+        "collectiveButton": {
+          "enabled": false,
+          "text": "MyText"
+        },
+        "wrap": {
+          "tagname": "span",
+          "attributes": {
+            "src": "img_girl"
+          }
+        }
       },
-      "extraButton": {
-        "enabled": false,
-        "text": "MyText",
-        "tooltip": "MoreText"
+
+      {
+        "name": "My html class wrap",
+        "contextMenu": {
+          "enabled": false,
+          "text": "MyText"
+        },
+        "extraButton": {
+          "enabled": false,
+          "text": "MyText",
+          "tooltip": "MoreText"
+        },
+        "collectiveButton": {
+          "enabled": false,
+          "text": "MyText"
+        },
+        "wrap": {
+          "classname": "span",
+          "global": false,
+          "styling": {
+            "color": "blue"
+          }
+        }
       },
-      "collectiveButton": {
-        "enabled": false,
-        "text": "MyText"
+
+      {
+        "name": "My text wrap",
+        "contextMenu": {
+          "enabled": false,
+          "text": "MyText"
+        },
+        "extraButton": {
+          "enabled": false,
+          "text": "MyText",
+          "tooltip": "MoreText"
+        },
+        "collectiveButton": {
+          "enabled": false,
+          "text": "MyText"
+        },
+        "wrap": {
+          "prefix": ">",
+          "infix": "::",
+          "infixRegex": "c\\d*",
+          "suffix": "<"
+        }
       },
-      "wrap": {
-        "tagname": "span",
-        "attributes": {
-          "src": "img_girl"
+
+      {
+        "name": "My meta wrap",
+        "contextMenu": {
+          "enabled": false,
+          "text": "MyText"
+        },
+        "extraButton": {
+          "enabled": false,
+          "text": "MyText",
+          "tooltip": "MoreText"
+        },
+        "collectiveButton": {
+          "enabled": false,
+          "text": "MyText"
+        },
+        "wrap": {
+          "tag": "This is a fake tag",
+          "id": "This is a fake id",
+          "storage": {}
         }
       }
-    },
-
-    {
-      "name": "My html class wrap",
-      "contextMenu": {
-        "enabled": false,
-        "text": "MyText"
-      },
-      "extraButton": {
-        "enabled": false,
-        "text": "MyText",
-        "tooltip": "MoreText"
-      },
-      "collectiveButton": {
-        "enabled": false,
-        "text": "MyText"
-      },
-      "wrap": {
-        "classname": "span",
-        "global": false,
-        "styling": {
-          "color": "blue"
-        }
-      }
-    },
-
-    {
-      "name": "My text wrap",
-      "contextMenu": {
-        "enabled": false,
-        "text": "MyText"
-      },
-      "extraButton": {
-        "enabled": false,
-        "text": "MyText",
-        "tooltip": "MoreText"
-      },
-      "collectiveButton": {
-        "enabled": false,
-        "text": "MyText"
-      },
-      "wrap": {
-        "prefix": ">",
-        "infix": "::",
-        "infixRegex": "c\\d*",
-        "suffix": "<"
-      }
-    },
-
-    {
-      "name": "My button config4",
-      "contextMenu": {
-        "enabled": false,
-        "text": "MyText"
-      },
-      "extraButton": {
-        "enabled": false,
-        "text": "MyText",
-        "tooltip": "MoreText"
-      },
-      "collectiveButton": {
-        "enabled": false,
-        "text": "MyText"
-      },
-      "wrap": {
-        "tag": "This is a fake tag",
-        "id": "This is a fake id",
-        "storage": {}
-      }
-    }
-
-  ]
+    ]
+  }
 }
