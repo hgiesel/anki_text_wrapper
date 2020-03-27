@@ -7,36 +7,19 @@ Copyright: (c) 2020 Henrik Giesel <https://github.com/hgiesel>
 License: GNU AGPLv3 <https://www.gnu.org/licenses/agpl.html>
 """
 
-# from aqt import mw
-# import os.path as path
-# if mw.addonManager.addonName(path.dirname(__file__)) != 'Script Manager':
-#     dir_path = path.dirname(path.realpath(__file__))
+import os.path as path
+from aqt import mw
 
-#     with open(path.join(dir_path, 'manifest.json')) as f:
-#         with open(path.join(dir_path, 'meta.json')) as f_old:
-#             import json
-#             mw.addonManager.writeAddonMeta(dir_path, json.load(f).update({
-#                 'config': json.load(f_old)['config']
-#             }))
+from .src.main import setup_addon_manager
 
-# from .src import main
+if mw.addonManager.addonName(path.dirname(__file__)) != 'Text Wrapper':
+    dir_path = path.dirname(path.realpath(__file__))
 
+    with open(path.join(dir_path, 'manifest.json')) as f:
+        with open(path.join(dir_path, 'meta.json')) as f_old:
+            import json
+            mw.addonManager.writeAddonMeta(dir_path, json.load(f).update({
+                'config': json.load(f_old)['config']
+            }))
 
-from aqt.utils import showInfo
-from anki.hooks import addHook
-
-# def add_my_buttons(buttons, editor):
-#     showInfo('hi!')
-
-#     # return buttons
-#     # for i, command in enumerate(config['commands']):
-#     #     editor._links[command['title']] = on_command_list[i]
-#     #     buttons.insert(-1, editor._addButton(
-#     #         icons[i],
-#     #         command['title'],
-#     #         command['description']
-#     #     ))
-
-#     return buttons
-
-# addHook("setupEditorButtons", add_my_buttons)
+setup_addon_manager()

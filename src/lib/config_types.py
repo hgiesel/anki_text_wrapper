@@ -5,90 +5,6 @@ Falsifiable = lambda t: Union[Literal[False], t]
 WrapType = Literal['tag', 'text']
 LabelText = str
 
-''' GENERAL Settings Storage '''
-
-@dataclass(frozen=True)
-class TWSettingStorage:
-    name: Optional[str]
-    description: Optional[str]
-    enabled: Optional[bool]
-    collective_button: Optional[TWCollectiveButtonStorage]
-    extra_button: Optional[TWExtraButtonStorage]
-    context_menu: Optional[TWContextMenuStorage]
-    wrap: Optional[TWWrapStorage]
-
-@dataclass(frozen=True)
-class TWContextMenuStorage:
-    enabled: Optional[bool]
-    text: Optional[str]
-
-@dataclass(frozen=True)
-class TWExtraButtonStorage:
-    enabled: Optional[bool]
-    text: Optional[str]
-    tooltip: Optional[str]
-
-@dataclass(frozen=True)
-class TWCollectiveButtonStorage:
-    enabled: Optional[bool]
-    text: Optional[str]
-
-''' GENERAL Settings Bool '''
-
-@dataclass(frozen=True)
-class TWSettingBool:
-    name: bool
-    description: bool
-    enabled: bool
-    collectiveButton: TWCollectiveButtonBool
-    extraButton: TWExtraButtonBool
-    contextMenu: TWContextMenuBool
-    wrap: TWWrapBool
-
-@dataclass(frozen=True)
-class TWCollectiveButtonBool:
-    enabled: bool
-    text: bool
-
-@dataclass(frozen=True)
-class TWExtraButtonBool:
-    enabled: bool
-    text: bool
-    tooltip: bool
-
-@dataclass(frozen=True)
-class TWContextMenuBool:
-    enabled: bool
-    text: bool
-
-''' GENERAL Settings '''
-
-@dataclass(frozen=True)
-class TWSetting:
-    name: str
-    description: str
-    enabled: bool
-    collectiveButton: TWCollectiveButton
-    extraButton: TWExtraButton
-    contextMenu: TWContextMenu
-    wrap: TWWrap
-
-@dataclass(frozen=True)
-class TWCollectiveButton:
-    enabled: bool
-    text: str
-
-@dataclass(frozen=True)
-class TWExtraButton:
-    enabled: bool
-    text: str
-    tooltip: str
-
-@dataclass(frozen=True)
-class TWContextMenu:
-    enabled: bool
-    text: str
-
 ''' WRAPS Storage '''
 
 @dataclass(frozen=True)
@@ -121,6 +37,8 @@ class TWTagWrapBool:
 class TWTextWrapBool:
     prefix: bool
     suffix: bool
+    infix: bool
+    infixRegex: bool
 
 TWWrapBool = Union[
     TWTagWrapBool,
@@ -130,33 +48,119 @@ TWWrapBool = Union[
 '''WRAPS'''
 
 @dataclass(frozen=True)
-class TWWrap:
-    pass
-
-@dataclass(frozen=True)
-class TWTagWrap(TWWrap):
+class TWTagWrap:
     tagname: str
     classname: str
     attributes: Dict[str, str]
     styling: Dict[str, str]
 
 @dataclass(frozen=True)
-class TWTextWrap(TWWrap):
+class TWTextWrap:
     prefix: str
     suffix: str
     infix: str
     infixRegex: str
 
 @dataclass(frozen=True)
-class TWMetaWrap(TWWrap):
+class TWMetaWrap:
     tag: str
     id: str
     storage: TWWrapStorage
 
+TWWrap = Union[
+    TWTagWrap,
+    TWTextWrap,
+    TWMetaWrap,
+]
+
+''' GENERAL Settings Storage '''
+
+@dataclass(frozen=True)
+class TWContextMenuStorage:
+    enabled: Optional[bool]
+    text: Optional[str]
+
+@dataclass(frozen=True)
+class TWExtraButtonStorage:
+    enabled: Optional[bool]
+    text: Optional[str]
+    tooltip: Optional[str]
+
+@dataclass(frozen=True)
+class TWCollectiveButtonStorage:
+    enabled: Optional[bool]
+    text: Optional[str]
+
+@dataclass(frozen=True)
+class TWSettingStorage:
+    name: Optional[str]
+    description: Optional[str]
+    enabled: Optional[bool]
+    collective_button: Optional[TWCollectiveButtonStorage]
+    extra_button: Optional[TWExtraButtonStorage]
+    context_menu: Optional[TWContextMenuStorage]
+    wrap: Optional[TWWrapStorage]
+
+''' GENERAL Settings Bool '''
+
+@dataclass(frozen=True)
+class TWCollectiveButtonBool:
+    enabled: bool
+    text: bool
+
+@dataclass(frozen=True)
+class TWExtraButtonBool:
+    enabled: bool
+    text: bool
+    tooltip: bool
+
+@dataclass(frozen=True)
+class TWContextMenuBool:
+    enabled: bool
+    text: bool
+
+@dataclass(frozen=True)
+class TWSettingBool:
+    name: bool
+    description: bool
+    enabled: bool
+    collectiveButton: TWCollectiveButtonBool
+    extraButton: TWExtraButtonBool
+    contextMenu: TWContextMenuBool
+    wrap: TWWrapBool
+
+''' GENERAL Settings '''
+
+@dataclass(frozen=True)
+class TWCollectiveButton:
+    enabled: bool
+    text: str
+
+@dataclass(frozen=True)
+class TWExtraButton:
+    enabled: bool
+    text: str
+    tooltip: str
+
+@dataclass(frozen=True)
+class TWContextMenu:
+    enabled: bool
+    text: str
+
+@dataclass(frozen=True)
+class TWSetting:
+    name: str
+    description: str
+    enabled: bool
+    collectiveButton: TWCollectiveButton
+    extraButton: TWExtraButton
+    contextMenu: TWContextMenu
+    wrap: TWWrap
+
 """ INTERFACE """
 
 AnkiModel = str
-Fields = List[Tuple(str, str)]
+Fields = List[Tuple[str, str]]
 Tags = List[str]
 WhichField = int
 
